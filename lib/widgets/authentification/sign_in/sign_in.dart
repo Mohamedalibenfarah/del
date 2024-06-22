@@ -1,5 +1,6 @@
 import 'package:deloitte/api_service.dart';
 import 'package:deloitte/widgets/authentification/sign_up/sign_up.dart';
+import 'package:deloitte/widgets/home.dart';
 import 'package:flutter/material.dart';
 import 'package:deloitte/widgets/button.dart';
 import 'package:deloitte/widgets/header.dart';
@@ -24,23 +25,13 @@ class _SignInState extends State<SignIn> {
 
   final ApiService apiService = ApiService();
 
-  Future<void> login() async {
+  Future<void> login(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-   print("Form is valid");
-      try {
-        await apiService.login(
-          emailController.text.trim(),
-          regNoController.text.trim(),
-          passwordController.text.trim(),
-        );
-          print("Login successful: $login");
-      } catch (e) {
-        print("eroooooooooooooooor: $e");
-        setState(() {
- 
-          errorMessage = 'Failed to log in. Please check your credentials and try again.';
-        });
-      }
+      debugPrint("Form is valid");
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Home()),
+      );
     }
   }
 
@@ -69,7 +60,8 @@ class _SignInState extends State<SignIn> {
                     validate: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter an email';
-                      } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                      } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                          .hasMatch(value)) {
                         return 'Enter a valid email address';
                       }
                       return null;
@@ -85,6 +77,7 @@ class _SignInState extends State<SignIn> {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your Register Number';
                       }
+
                       ///
                       return null;
                     },
@@ -107,7 +100,9 @@ class _SignInState extends State<SignIn> {
                   const SizedBox(height: 10.0),
                   Button(
                     label: "Log In",
-                    onTap: login,
+                    onTap: () async {
+                      await login(context);
+                    },
                   ),
                   const SizedBox(height: 20.0),
                   NoAccount(

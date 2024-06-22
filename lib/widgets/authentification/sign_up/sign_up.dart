@@ -44,9 +44,13 @@ class _SignUpState extends State<SignUp> {
         mobileController.text.trim(),
         nameController.text.trim(),
       );
-
+  
       // Handle the successful creation
       if (result != null) {
+          Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const SignIn()),
+        );
         // Update UI or navigate to another screen
         if (kDebugMode) {
           print('User created successfully: $result');

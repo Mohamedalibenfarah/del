@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:html' as html;
 import 'dart:typed_data';
+import 'package:deloitte/widgets/header.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _FilePgState extends State<FilePg> {
   Uint8List? _fileBytes;
   String? _fileName;
   bool _isLoading = false;
-  static const String baseUrl = 'http://192.168.1.114:8000';
+  static const String baseUrl = 'http://192.168.1.18:8000';
 
   /// Picking file
   Future<void> _pickFile() async {
@@ -133,67 +134,112 @@ class _FilePgState extends State<FilePg> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: const Center(
-          child: Text('Uploading File'),
-        ),
-      ),
       body: Center(
         child: _isLoading
             ? const CircularProgressIndicator(color: Colors.green)
             : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Text(
-                    "Welcome to the Document Upload Center\n Upload Your Files Here",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontSize: 30,
-                    ),
-                  ),
-                  const SizedBox(height: 50),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.green),
-                      foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white),
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                        const EdgeInsets.symmetric(
-                          horizontal: 20.0,
-                          vertical: 15.0,
-                        ),
+                children: [
+                  Header(text: ""),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Image.asset(
+                        'assets/upload_f.jpg',
+                        height: 500,
                       ),
-                      textStyle: MaterialStateProperty.all<TextStyle>(
-                        const TextStyle(fontSize: 16),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "UPLOADING",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 30,
+                            ),
+                          ),
+                          const Text(
+                            "Welcome to the Document Upload Center\n Upload Your Files Here",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ),
+                          const SizedBox(height: 50),
+                          Row(
+                            children: [
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                  ),
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.green),
+                                  foregroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.white),
+                                  textStyle:
+                                      MaterialStateProperty.all<TextStyle>(
+                                    const TextStyle(fontSize: 16),
+                                  ),
+                                ),
+                                onPressed: _pickFile,
+                                child: const Text(
+                                  'Pick Your File',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                  ),
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.white),
+                                  foregroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.black),
+                                  textStyle:
+                                      MaterialStateProperty.all<TextStyle>(
+                                    const TextStyle(fontSize: 16),
+                                  ),
+                                ),
+                                onPressed: _uploadFile,
+                                child: const Text(
+                                  'Upload Your File',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          if (_fileName != null)
+                            Text(
+                              _fileName!,
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          const SizedBox(height: 20),
+                        ],
                       ),
-                    ),
-                    onPressed: _pickFile,
-                    child: const Text('Pick Your File'),
-                  ),
-                  if (_fileName != null) Text(_fileName!),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.green),
-                      foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white),
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                        const EdgeInsets.symmetric(
-                          horizontal: 20.0,
-                          vertical: 15.0,
-                        ),
-                      ),
-                      textStyle: MaterialStateProperty.all<TextStyle>(
-                        const TextStyle(fontSize: 16),
-                      ),
-                    ),
-                    onPressed: _uploadFile,
-                    child: const Text('Upload Your File'),
+                    ],
                   ),
                 ],
               ),

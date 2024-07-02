@@ -1,6 +1,7 @@
 import 'package:deloitte/api_service.dart';
 import 'package:deloitte/widgets/authentification/sign_up/sign_up.dart';
 import 'package:deloitte/widgets/home.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:deloitte/widgets/button.dart';
 import 'package:deloitte/widgets/header.dart';
@@ -17,21 +18,54 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    login();
+  }
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final regNoController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   String errorMessage = '';
-
   final ApiService apiService = ApiService();
-
-  Future<void> login(BuildContext context) async {
+  Future<void> login() async {
     if (_formKey.currentState!.validate()) {
-      debugPrint("Form is valid");
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const Home()),
-      );
+      final email = emailController.text.trim();
+      final regNo = regNoController.text.trim();
+      final password = passwordController.text.trim();
+
+      if (email.isNotEmpty && regNo.isNotEmpty && password.isNotEmpty) {
+        try {
+          Map<String, dynamic> result =
+              await apiService.login(email, regNo, password);
+
+          // Handle the successful creation
+          if (result != null) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Home()),
+            );
+            // Update UI or navigate to another screen
+            if (kDebugMode) {
+              print('User logged in successfully: $result');
+            }
+          } else {
+            setState(() {
+              errorMessage = 'Failed to log in . Please try again.';
+            });
+          }
+        } catch (e) {
+          setState(() {
+            errorMessage = 'Error: $e';
+          });
+        }
+      } else {
+        setState(() {
+          errorMessage = 'Please fill in all the required fields.';
+        });
+      }
     }
   }
 
@@ -70,15 +104,13 @@ class _SignInState extends State<SignIn> {
                   const SizedBox(height: 10.0),
                   TextFileds(
                     controller: regNoController,
-                    label: "regNo",
+                    label: "Registration Number",
                     obscure: false,
                     input: TextInputType.name,
                     validate: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your Register Number';
+                        return 'Please enter your Registration Number';
                       }
-
-                      ///
                       return null;
                     },
                   ),
@@ -101,7 +133,7 @@ class _SignInState extends State<SignIn> {
                   Button(
                     label: "Log In",
                     onTap: () async {
-                      await login(context);
+                      await login();
                     },
                   ),
                   const SizedBox(height: 20.0),

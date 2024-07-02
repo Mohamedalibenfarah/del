@@ -16,7 +16,7 @@ class _TableDataState extends State<TableData> {
   List<Map<String, String>> _originalData = [];
   List<Map<String, String>> _filteredData = [];
 
-  static const String baseUrl = 'http://192.168.1.114:8000';
+  static const String baseUrl = 'http://192.168.1.18:8000';
 
   Future<void> _fetchData() async {
     if (_startDate == null || _endDate == null) {

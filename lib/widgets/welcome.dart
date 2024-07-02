@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:deloitte/widgets/authentification/sign_in/sign_in.dart';
+import 'package:deloitte/widgets/home.dart';
 import 'package:flutter/material.dart';
 
 class Welcome extends StatefulWidget {
@@ -22,7 +22,7 @@ class _WelcomeState extends State<Welcome> {
 
   Route _createRoute() {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => const SignIn(),
+      pageBuilder: (context, animation, secondaryAnimation) => const Home(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return FadeTransition(opacity: animation, child: child);
       },

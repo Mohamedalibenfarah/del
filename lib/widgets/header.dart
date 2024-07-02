@@ -1,3 +1,4 @@
+import 'package:deloitte/widgets/home.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
@@ -12,11 +13,50 @@ class Header extends StatelessWidget {
     return Column(
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Image.asset(
-              'assets/DELWhite.jpg',
+              'assets/del.png',
               width: 300,
               height: 120,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => const Home(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "Home",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 30),
+                  InkWell(
+                    onTap: () {
+                      // Navigate to sign in page
+                    },
+                    child: const Text(
+                      "About Us",
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

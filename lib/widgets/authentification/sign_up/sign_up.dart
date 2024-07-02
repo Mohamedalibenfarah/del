@@ -33,40 +33,40 @@ class _SignUpState extends State<SignUp> {
 
   final ApiService apiService = ApiService();
 
- Future<void> _signUp() async {
-  if (_formKey.currentState!.validate()) {
-    try {
-      Map<String, dynamic> result = await apiService.create(
-        emailController.text.trim(),
-        regNoController.text.trim(),
-        passwordController.text.trim(),
-        userNameController.text.trim(),
-        mobileController.text.trim(),
-        nameController.text.trim(),
-      );
-  
-      // Handle the successful creation
-      if (result != null) {
-          Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const SignIn()),
+  Future<void> _signUp() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        Map<String, dynamic> result = await apiService.create(
+          emailController.text.trim(),
+          regNoController.text.trim(),
+          passwordController.text.trim(),
+          userNameController.text.trim(),
+          mobileController.text.trim(),
+          nameController.text.trim(),
         );
-        // Update UI or navigate to another screen
-        if (kDebugMode) {
-          print('User created successfully: $result');
+
+        // Handle the successful creation
+        if (result != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const SignIn()),
+          );
+          // Update UI or navigate to another screen
+          if (kDebugMode) {
+            print('User created successfully: $result');
+          }
+        } else {
+          setState(() {
+            errorMessage = 'Failed to create user. Please try again.';
+          });
         }
-      } else {
+      } catch (e) {
         setState(() {
-          errorMessage = 'Failed to create user. Please try again.';
+          errorMessage = 'Error: $e';
         });
       }
-    } catch (e) {
-      setState(() {
-        errorMessage = 'Error: $e';
-      });
     }
   }
-}
 
   @override
   void dispose() {
@@ -83,6 +83,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+      
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -93,7 +94,8 @@ class _SignUpState extends State<SignUp> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   const Header(
-                    text: 'Please create your account in order to be able to benefit from our service!',
+                    text:
+                        'Please create your account in order to be able to benefit from our service!',
                   ),
                   const SizedBox(height: 20.0),
 
@@ -123,8 +125,8 @@ class _SignUpState extends State<SignUp> {
                       return null;
                     },
                   ),
-                    const SizedBox(height: 10.0),
-                   TextFileds(
+                  const SizedBox(height: 10.0),
+                  TextFileds(
                     controller: userNameController,
                     label: 'Last Name',
                     obscure: false,
@@ -146,7 +148,8 @@ class _SignUpState extends State<SignUp> {
                     validate: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter an email';
-                      } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                      } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                          .hasMatch(value)) {
                         return 'Enter a valid email address';
                       }
                       return null;

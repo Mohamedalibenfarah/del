@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'package:deloitte/models/api_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
-  static const String baseUrl = 'http://192.168.1.114:8000';
+  static const String baseUrl = 'http://192.168.1.18:8000';
 
   Future<List<ApiModel>> getApi() async {
     List<ApiModel> personList = [];
@@ -31,6 +32,10 @@ class ApiService {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
+
+        // Save the login data
+        await _saveLoginData(data);
+
         return data;
       } else {
         throw Exception(
@@ -44,6 +49,42 @@ class ApiService {
     }
   }
 
+  Future<Map<String, dynamic>> logout() async {
+    try {
+      var path = Uri.parse('$baseUrl/authentification/api/logout');
+      var response = await http.post(path);
+
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      } else {
+        throw Exception(
+            'Failed to log out: ${response.statusCode} - ${response.body}');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error: $e');
+      }
+      rethrow;
+    }
+  }
+
+  Future<void> _saveLoginData(Map<String, dynamic> data) async {
+    // Use a local storage solution, like shared_preferences or hive, to save the login data
+    final prefs = await SharedPreferences.getInstance();
+
+    // Save the access token, refresh token, and user information
+    await prefs.setString('accessToken', data['access_token'] as String? ?? '');
+    await prefs.setString(
+        'refreshToken', data['refresh_token'] as String? ?? '');
+    await prefs.setString('email', data['email'] as String? ?? '');
+    await prefs.setString('regNo', data['regNo'] as String? ?? '');
+    await prefs.setString('userName', data['name'] as String? ?? '');
+    await prefs.setInt('userId', data['user_id'] as int? ?? 0);
+    // Set the isLoggedIn flag to true
+    await prefs.setBool('isLoggedIn', true);
+  }
+
+  // Save any other relevant data you want to store
   /// Creation du compte
   Future<Map<String, dynamic>> create(
     String email,

@@ -43,9 +43,7 @@ class Header extends StatelessWidget {
                   ),
                   const SizedBox(width: 30),
                   InkWell(
-                    onTap: () {
-                      // Navigate to sign in page
-                    },
+                    onTap: () {},
                     child: const Text(
                       "About Us",
                       style: TextStyle(

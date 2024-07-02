@@ -41,13 +41,12 @@ class _SignInState extends State<SignIn> {
           Map<String, dynamic> result =
               await apiService.login(email, regNo, password);
 
-          // Handle the successful creation
           if (result != null) {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const Home()),
             );
-            // Update UI or navigate to another screen
+
             if (kDebugMode) {
               print('User logged in successfully: $result');
             }
@@ -153,7 +152,9 @@ class _SignInState extends State<SignIn> {
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
                         errorMessage,
-                        style: const TextStyle(color: Colors.red),
+                        style: const TextStyle(
+                          color: Colors.red,
+                        ),
                       ),
                     ),
                 ],

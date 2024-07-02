@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
-  static const String baseUrl = 'http://192.168.1.18:8000';
+  static const String baseUrl = 'http://192.168.0.16:8000';
 
   Future<List<ApiModel>> getApi() async {
     List<ApiModel> personList = [];
@@ -69,10 +69,8 @@ class ApiService {
   }
 
   Future<void> _saveLoginData(Map<String, dynamic> data) async {
-    // Use a local storage solution, like shared_preferences or hive, to save the login data
     final prefs = await SharedPreferences.getInstance();
 
-    // Save the access token, refresh token, and user information
     await prefs.setString('accessToken', data['access_token'] as String? ?? '');
     await prefs.setString(
         'refreshToken', data['refresh_token'] as String? ?? '');
@@ -80,11 +78,10 @@ class ApiService {
     await prefs.setString('regNo', data['regNo'] as String? ?? '');
     await prefs.setString('userName', data['name'] as String? ?? '');
     await prefs.setInt('userId', data['user_id'] as int? ?? 0);
-    // Set the isLoggedIn flag to true
+
     await prefs.setBool('isLoggedIn', true);
   }
 
-  // Save any other relevant data you want to store
   /// Creation du compte
   Future<Map<String, dynamic>> create(
     String email,

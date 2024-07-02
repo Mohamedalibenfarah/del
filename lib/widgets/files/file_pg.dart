@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:html' as html;
-import 'dart:typed_data';
 import 'package:deloitte/widgets/header.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
@@ -18,7 +17,7 @@ class _FilePgState extends State<FilePg> {
   Uint8List? _fileBytes;
   String? _fileName;
   bool _isLoading = false;
-  static const String baseUrl = 'http://192.168.1.18:8000';
+  static const String baseUrl = 'http://192.168.0.16:8000';
 
   /// Picking file
   Future<void> _pickFile() async {
@@ -139,12 +138,12 @@ class _FilePgState extends State<FilePg> {
             ? const CircularProgressIndicator(color: Colors.green)
             : Column(
                 children: [
-                  Header(text: ""),
+                  const Header(text: ""),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Image.asset(
-                        'assets/upload_f.jpg',
+                        'assets/uplooo.png',
                         height: 500,
                       ),
                       Column(
@@ -233,8 +232,9 @@ class _FilePgState extends State<FilePg> {
                             Text(
                               _fileName!,
                               style: const TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           const SizedBox(height: 20),
                         ],

@@ -49,7 +49,9 @@ class _SignUpState extends State<SignUp> {
         if (result != null) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const SignIn()),
+            MaterialPageRoute(
+              builder: (context) => const SignIn(),
+            ),
           );
           // Update UI or navigate to another screen
           if (kDebugMode) {
@@ -83,7 +85,6 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-      
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),

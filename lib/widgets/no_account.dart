@@ -24,7 +24,9 @@ class NoAccount extends StatelessWidget {
           children: <TextSpan>[
             TextSpan(
               text: text1,
-              style: const TextStyle(color: Colors.grey),
+              style: const TextStyle(
+                color: Colors.grey,
+              ),
             ),
             TextSpan(
               text: text2,

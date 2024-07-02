@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:deloitte/widgets/header.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class _TableDataState extends State<TableData> {
   List<Map<String, String>> _originalData = [];
   List<Map<String, String>> _filteredData = [];
 
-  static const String baseUrl = 'http://192.168.1.18:8000';
+  static const String baseUrl = 'http://192.168.0.16:8000';
 
   Future<void> _fetchData() async {
     if (_startDate == null || _endDate == null) {
@@ -41,7 +42,6 @@ class _TableDataState extends State<TableData> {
         try {
           List<dynamic> responseData = json.decode(response.body)['data'];
 
-          // Handle NaN values in the response
           responseData = responseData.map((item) {
             Map<String, dynamic> updatedItem = {};
             item.forEach((key, value) {
@@ -50,7 +50,6 @@ class _TableDataState extends State<TableData> {
             return updatedItem;
           }).toList();
 
-          // Convert the List<dynamic> to List<Map<String, String>>
           List<Map<String, String>> parsedData = responseData.map((item) {
             Map<String, String> parsedItem = {};
             item.forEach((key, value) {
@@ -65,7 +64,6 @@ class _TableDataState extends State<TableData> {
           });
         } catch (e) {
           debugPrint('Error decoding JSON: $e');
-          // Handle the error, e.g., show a message to the user
         }
       } else {
         throw Exception('Failed to load data');
@@ -118,19 +116,13 @@ class _TableDataState extends State<TableData> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.green,
-          title: const Center(
-            child: Text(
-              'Get your Data',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
+        backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              const Header(text: ""),
+              const SizedBox(height: 50),
               Form(
                 key: _formKey,
                 child: Column(

@@ -36,8 +36,6 @@ class _HomeState extends State<Home> {
       setState(() {
         isUserLoggedIn = false;
       });
-      // Navigate to the login screen or any other desired screen
-      Navigator.pushNamed(context, '/login');
     }
   }
 
@@ -91,9 +89,7 @@ class _HomeState extends State<Home> {
                                       ),
                                       const SizedBox(width: 30),
                                       InkWell(
-                                        onTap: () {
-                                          // Navigate to sign in page
-                                        },
+                                        onTap: () {},
                                         child: const Text(
                                           "About Us",
                                           style: TextStyle(
@@ -212,233 +208,235 @@ class _HomeState extends State<Home> {
               Expanded(
                 flex: 1,
                 child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 100),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 20,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                InkWell(
-                                  onTap: () async {
-                                    // Check if the user is logged in
-                                    SharedPreferences prefs =
-                                        await SharedPreferences.getInstance();
-                                    bool isUserLoggedIn =
-                                        prefs.getBool('isLoggedIn') ?? false;
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 100),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              InkWell(
+                                onTap: () async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  bool isUserLoggedIn =
+                                      prefs.getBool('isLoggedIn') ?? false;
 
-                                    if (isUserLoggedIn) {
-                                      // Navigate to the file  screen
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => const FilePg(),
-                                        ),
-                                      );
-                                    } else {
-                                      // Show an alert dialog if the user is not logged in
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: const Text('Not Logged In'),
-                                            content: const Text(
-                                                'You need to be logged in to access this feature.'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: const Text(
-                                                  'OK',
-                                                  style: TextStyle(
-                                                    color: Colors.green,
-                                                  ),
+                                  if (isUserLoggedIn) {
+                                    // ignore: use_build_context_synchronously
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const FilePg(),
+                                      ),
+                                    );
+                                  } else {
+                                    // ignore: use_build_context_synchronously
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text('Not Logged In'),
+                                          content: const Text(
+                                            'You need to be logged in to access this feature.',
+                                          ),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text(
+                                                'OK',
+                                                style: TextStyle(
+                                                  color: Colors.green,
                                                 ),
                                               ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    }
-                                  },
-                                  child: Container(
-                                    width: 150,
-                                    height: 150,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.green,
-                                      shape: BoxShape.circle,
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }
+                                },
+                                child: Container(
+                                  width: 150,
+                                  height: 150,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.green,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset(
+                                    "assets/upload.png",
+                                    color: Colors.white,
+                                    height: 40,
+                                    width: 40,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 30),
+                              const Text(
+                                "Uploading File",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              InkWell(
+                                onTap: () async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  bool isUserLoggedIn =
+                                      prefs.getBool('isLoggedIn') ?? false;
+
+                                  if (isUserLoggedIn) {
+                                    // ignore: use_build_context_synchronously
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const TableData(),
+                                      ),
+                                    );
+                                  } else {
+                                    // ignore: use_build_context_synchronously
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text('Not Logged In'),
+                                          content: const Text(
+                                            'You need to be logged in to access this feature.',
+                                          ),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text(
+                                                'OK',
+                                                style: TextStyle(
+                                                  color: Colors.green,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }
+                                },
+                                child: Container(
+                                  width: 150,
+                                  height: 150,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.green,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 20,
                                     ),
-                                    child: Image.asset(
-                                      "assets/upload.png",
+                                    child: SvgPicture.asset(
+                                      "assets/icons/view.svg",
                                       color: Colors.white,
                                       height: 40,
                                       width: 40,
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 30),
-                                const Text(
-                                  "Uploading File",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                InkWell(
-                                  onTap: () async {
-                                    // Check if the user is logged in
-                                    SharedPreferences prefs =
-                                        await SharedPreferences.getInstance();
-                                    bool isUserLoggedIn =
-                                        prefs.getBool('isLoggedIn') ?? false;
-
-                                    if (isUserLoggedIn) {
-                                      // Navigate to the TableData screen
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const TableData(),
-                                        ),
-                                      );
-                                    } else {
-                                      // Show an alert dialog if the user is not logged in
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: const Text('Not Logged In'),
-                                            content: const Text(
-                                                'You need to be logged in to access this feature.'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: const Text(
-                                                  'OK',
-                                                  style: TextStyle(
-                                                    color: Colors.green,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    }
-                                  },
-                                  child: Container(
-                                    width: 150,
-                                    height: 150,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.green,
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 20,
-                                        vertical: 20,
-                                      ),
-                                      child: SvgPicture.asset(
-                                        "assets/icons/view.svg",
-                                        color: Colors.white,
-                                        height: 40,
-                                        width: 40,
-                                      ),
-                                    ),
-                                  ),
+                              ),
+                              const SizedBox(height: 30),
+                              const Text(
+                                "Consulting Data",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                const SizedBox(height: 30),
-                                const Text(
-                                  "Consulting Data",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 20,
+                              ),
+                            ],
                           ),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Column(
-                                  children: [
-                                    Container(
-                                      width: 150,
-                                      height: 150,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.green,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 20,
-                                          vertical: 20,
-                                        ),
-                                        child: SvgPicture.asset(
-                                          "assets/icons/settings.svg",
-                                          color: Colors.white,
-                                          height: 40,
-                                          width: 40,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 30),
-                                    const Text(
-                                      "Settings",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              Container(
+                                width: 150,
+                                height: 150,
+                                decoration: const BoxDecoration(
+                                  color: Colors.green,
+                                  shape: BoxShape.circle,
                                 ),
-                                Column(
-                                  children: [
-                                    Container(
-                                      width: 150,
-                                      height: 150,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.green,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: SvgPicture.asset(
-                                        "assets/icons/contact.svg",
-                                        color: Colors.white,
-                                        height: 40,
-                                        width: 40,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 30),
-                                    const Text(
-                                      "Contact Us",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                    vertical: 20,
+                                  ),
+                                  child: SvgPicture.asset(
+                                    "assets/icons/settings.svg",
+                                    color: Colors.white,
+                                    height: 40,
+                                    width: 40,
+                                  ),
                                 ),
-                              ]))
-                    ]),
-              )
+                              ),
+                              const SizedBox(height: 30),
+                              const Text(
+                                "Settings",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                width: 150,
+                                height: 150,
+                                decoration: const BoxDecoration(
+                                  color: Colors.green,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: SvgPicture.asset(
+                                  "assets/icons/contact.svg",
+                                  color: Colors.white,
+                                  height: 40,
+                                  width: 40,
+                                ),
+                              ),
+                              const SizedBox(height: 30),
+                              const Text(
+                                "Contact Us",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

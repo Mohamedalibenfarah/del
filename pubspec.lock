@@ -65,6 +65,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
+  embeddedsdk:
+    dependency: "direct main"
+    description:
+      name: embeddedsdk
+      sha256: "729141322281c82b1be220c466105f54c2ad13834ed3e9f639d7c3a8e6c6bd33"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.1"
   fake_async:
     dependency: transitive
     description:
@@ -280,6 +288,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.8"
+  pointer_interceptor:
+    dependency: "direct main"
+    description:
+      name: pointer_interceptor
+      sha256: d0a8e660d1204eaec5bd34b34cc92174690e076d2e4f893d9d68c486a13b07c4
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.1+1"
+  pointer_interceptor_ios:
+    dependency: transitive
+    description:
+      name: pointer_interceptor_ios
+      sha256: "2e73c39452830adc4695757130676a39412a3b7f3c34e3f752791b5384770877"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.0+2"
+  pointer_interceptor_platform_interface:
+    dependency: transitive
+    description:
+      name: pointer_interceptor_platform_interface
+      sha256: "0597b0560e14354baeb23f8375cd612e8bd4841bf8306ecb71fcd0bb78552506"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.0+1"
+  pointer_interceptor_web:
+    dependency: transitive
+    description:
+      name: pointer_interceptor_web
+      sha256: "2a8a069206f7b234a895d30ccab8b18ea267eeb79a832e5e3d1b6464d659eb6a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.0"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -454,7 +494,7 @@ packages:
     source: hosted
     version: "3.16.1"
   webview_flutter_platform_interface:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: webview_flutter_platform_interface
       sha256: d937581d6e558908d7ae3dc1989c4f87b786891ab47bb9df7de548a151779d8d

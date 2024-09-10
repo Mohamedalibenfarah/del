@@ -17,7 +17,7 @@ class _FilePgState extends State<FilePg> {
   Uint8List? _fileBytes;
   String? _fileName;
   bool _isLoading = false;
-  static const String baseUrl = 'http://192.168.0.16:8000';
+  static const String baseUrl = 'http://192.168.111.1:8000';
 
   /// Picking file
   Future<void> _pickFile() async {

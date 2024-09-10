@@ -44,7 +44,9 @@ class _SignInState extends State<SignIn> {
           if (result != null) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const Home()),
+              MaterialPageRoute(
+                builder: (context) => const Home(),
+              ),
             );
 
             if (kDebugMode) {

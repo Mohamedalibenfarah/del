@@ -1,5 +1,6 @@
 import 'package:deloitte/widgets/authentification/sign_in/sign_in.dart';
 import 'package:deloitte/widgets/authentification/sign_up/sign_up.dart';
+import 'package:deloitte/widgets/dashboards/dash.dart';
 import 'package:deloitte/widgets/files/file_pg.dart';
 import 'package:deloitte/widgets/table_data.dart';
 import 'package:flutter/material.dart';
@@ -377,29 +378,73 @@ class _HomeState extends State<Home> {
                         children: [
                           Column(
                             children: [
-                              Container(
-                                width: 150,
-                                height: 150,
-                                decoration: const BoxDecoration(
-                                  color: Colors.green,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                    vertical: 20,
+                              InkWell(
+                                onTap: () async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  bool isUserLoggedIn =
+                                      prefs.getBool('isLoggedIn') ?? false;
+
+                                  if (isUserLoggedIn) {
+                                    // ignore: use_build_context_synchronously
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Dashboarding(),
+                                      ),
+                                    );
+                                  } else {
+                                    // ignore: use_build_context_synchronously
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text('Not Logged In'),
+                                          content: const Text(
+                                            'You need to be logged in to access this feature.',
+                                          ),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text(
+                                                'OK',
+                                                style: TextStyle(
+                                                  color: Colors.green,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }
+                                },
+                                child: Container(
+                                  width: 150,
+                                  height: 150,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.green,
+                                    shape: BoxShape.circle,
                                   ),
-                                  child: SvgPicture.asset(
-                                    "assets/icons/settings.svg",
-                                    color: Colors.white,
-                                    height: 40,
-                                    width: 40,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 20,
+                                    ),
+                                    child: SvgPicture.asset(
+                                      "assets/icons/statistics.svg",
+                                      color: Colors.white,
+                                      height: 40,
+                                      width: 40,
+                                    ),
                                   ),
                                 ),
                               ),
                               const SizedBox(height: 30),
                               const Text(
-                                "Settings",
+                                "Dashboards",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),

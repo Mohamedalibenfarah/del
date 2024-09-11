@@ -43,9 +43,11 @@ flutter:
     - assets/upload.png
     - assets/upload_f.jpg
     - assets/uplooo.png
+    - assets/login.png
     - assets/del.png
     - assets/icons/view.svg
     - assets/icons/home.svg
     - assets/icons/statistics.svg
     - assets/icons/settings.svg
     - assets/icons/contact.svg
+    - assets/icons/globe.svg

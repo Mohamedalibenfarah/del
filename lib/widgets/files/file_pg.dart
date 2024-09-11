@@ -138,106 +138,111 @@ class _FilePgState extends State<FilePg> {
             ? const CircularProgressIndicator(color: Colors.green)
             : Column(
                 children: [
-                  const Header(text: ""),
+                  const Header(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Image.asset(
-                        'assets/uplooo.png',
-                        height: 500,
+                      Expanded(
+                        flex: 2,
+                        child: Image.asset(
+                          'assets/uplooo.png',
+                          height: 500,
+                        ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "UPLOADING",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 30,
-                            ),
-                          ),
-                          const Text(
-                            "Welcome to the Document Upload Center\n Upload Your Files Here",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              color: Colors.black,
-                              fontSize: 20,
-                            ),
-                          ),
-                          const SizedBox(height: 50),
-                          Row(
-                            children: [
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                  ),
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.green),
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.white),
-                                  textStyle:
-                                      MaterialStateProperty.all<TextStyle>(
-                                    const TextStyle(fontSize: 16),
-                                  ),
-                                ),
-                                onPressed: _pickFile,
-                                child: const Text(
-                                  'Pick Your File',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 20),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                  ),
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.white),
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.black),
-                                  textStyle:
-                                      MaterialStateProperty.all<TextStyle>(
-                                    const TextStyle(fontSize: 16),
-                                  ),
-                                ),
-                                onPressed: _uploadFile,
-                                child: const Text(
-                                  'Upload Your File',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                          if (_fileName != null)
-                            Text(
-                              _fileName!,
-                              style: const TextStyle(
-                                color: Colors.black,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "UPLOADING",
+                              style: TextStyle(
                                 fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontSize: 30,
                               ),
                             ),
-                          const SizedBox(height: 20),
-                        ],
+                            const Text(
+                              "Welcome to the Document Upload Center\n Upload Your Files Here",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                color: Colors.black,
+                                fontSize: 20,
+                              ),
+                            ),
+                            const SizedBox(height: 50),
+                            Row(
+                              children: [
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                    ),
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.green),
+                                    foregroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.white),
+                                    textStyle:
+                                        MaterialStateProperty.all<TextStyle>(
+                                      const TextStyle(fontSize: 16),
+                                    ),
+                                  ),
+                                  onPressed: _pickFile,
+                                  child: const Text(
+                                    'Pick Your File',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 20),
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                    ),
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.white),
+                                    foregroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.black),
+                                    textStyle:
+                                        MaterialStateProperty.all<TextStyle>(
+                                      const TextStyle(fontSize: 16),
+                                    ),
+                                  ),
+                                  onPressed: _uploadFile,
+                                  child: const Text(
+                                    'Upload Your File',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            if (_fileName != null)
+                              Text(
+                                _fileName!,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            const SizedBox(height: 20),
+                          ],
+                        ),
                       ),
                     ],
                   ),

@@ -2,10 +2,8 @@ import 'package:deloitte/widgets/home.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
-  final String text;
   const Header({
     super.key,
-    required this.text,
   });
 
   @override
@@ -13,43 +11,49 @@ class Header extends StatelessWidget {
     return Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset(
-              'assets/del.png',
-              width: 300,
-              height: 120,
+            Expanded(
+              flex: 2,
+              child: Image.asset(
+                'assets/del.png',
+                width: 300,
+                height: 120,
+              ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+            const Spacer(flex: 4),
+            Expanded(
               child: Row(
                 children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => const Home(),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const Home(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        "Home",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
                         ),
-                      );
-                    },
-                    child: const Text(
-                      "Home",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
                       ),
                     ),
                   ),
                   const SizedBox(width: 30),
-                  InkWell(
-                    onTap: () {},
-                    child: const Text(
-                      "About Us",
-                      style: TextStyle(
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {},
+                      child: const Text(
+                        "About Us",
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ),
@@ -57,17 +61,6 @@ class Header extends StatelessWidget {
               ),
             ),
           ],
-        ),
-        const SizedBox(height: 30),
-        Text(
-          text,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 24.0,
-            color: Colors.black,
-            fontWeight: FontWeight.w500,
-            fontStyle: FontStyle.italic,
-          ),
         ),
       ],
     );

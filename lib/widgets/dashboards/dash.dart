@@ -1,3 +1,4 @@
+import 'package:deloitte/widgets/header.dart';
 import 'package:flutter/material.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
@@ -16,18 +17,28 @@ class Dashboarding extends StatelessWidget {
         );
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Stack(
-          children: [
-            PlatformWebViewWidget(
-              PlatformWebViewWidgetCreationParams(controller: controller),
-            ).build(context),
-            PointerInterceptor(
-              child: const Text(""),
-            )
-          ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  const Header(),
+                  Flexible(
+                    child: PlatformWebViewWidget(
+                      PlatformWebViewWidgetCreationParams(controller: controller),
+                    ).build(context),
+                  ),
+                ],
+              ),
+              PointerInterceptor(
+                child: const Text(""),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -59,71 +59,83 @@ class _HomeState extends State<Home> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Image.asset(
-                                  'assets/DELBlack.jpg',
-                                  width: 300,
-                                  height: 120,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                    vertical: 20,
+                                Expanded(
+                                  child: Image.asset(
+                                    'assets/DELBlack.jpg',
+                                    width: 300,
+                                    height: 120,
                                   ),
-                                  child: Row(
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (_) => const Home(),
-                                            ),
-                                          );
-                                        },
-                                        child: const Text(
-                                          "Home",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 30),
-                                      InkWell(
-                                        onTap: () {},
-                                        child: const Text(
-                                          "About Us",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 30),
-                                      InkWell(
-                                        onTap: () async {
-                                          if (isUserLoggedIn) {
-                                            await _logout();
-                                          } else {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (_) => const SignIn(),
+                                ),
+                                const Spacer(flex: 2),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 20,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (_) => const Home(),
+                                                ),
+                                              );
+                                            },
+                                            child: const Text(
+                                              "Home",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20,
                                               ),
-                                            );
-                                          }
-                                        },
-                                        child: Text(
-                                          isUserLoggedIn ? "Logout" : "Login",
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(width: 30),
-                                    ],
+                                        Expanded(
+                                          child: InkWell(
+                                            onTap: () {},
+                                            child: const Text(
+                                              "About Us",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: InkWell(
+                                            onTap: () async {
+                                              if (isUserLoggedIn) {
+                                                await _logout();
+                                              } else {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        const SignIn(),
+                                                  ),
+                                                );
+                                              }
+                                            },
+                                            child: Text(
+                                              isUserLoggedIn
+                                                  ? "Logout"
+                                                  : "Login",
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 30),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
@@ -138,63 +150,65 @@ class _HomeState extends State<Home> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const SizedBox(width: 50),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        "Cabinet de",
-                                        style: TextStyle(
-                                          fontSize: 30,
-                                          color: Colors.green,
-                                          fontWeight: FontWeight.bold,
+                                  const Expanded(
+                                    child: SizedBox(
+                                      width: 20,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 5,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          "Data Insight",
+                                          style: TextStyle(
+                                            fontSize: 40,
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      const Text(
-                                        "Services professionnels",
-                                        style: TextStyle(
-                                          fontSize: 40,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontStyle: FontStyle.italic,
+                                        const SizedBox(height: 10),
+                                        const Text(
+                                          "Empowering Decisions with Seamless Data Integration and Real-Time Insights",
+                                          style: TextStyle(
+                                            fontSize: 30,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle: FontStyle.italic,
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(height: 30),
-                                      const Text(
-                                        "Deloitte favorise une approche focalisée sur la maîtrise des risques spécifiques \n à l'activité tout en intégrant une évaluation des systèmes et des procédures",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 30),
-                                      Container(
-                                        padding: const EdgeInsets.all(20),
-                                        decoration: const BoxDecoration(
+                                        const SizedBox(height: 30),
+                                        Container(
+                                          padding: const EdgeInsets.all(20),
+                                          decoration: const BoxDecoration(
                                             color: Colors.white,
                                             borderRadius: BorderRadius.all(
-                                                Radius.circular(50))),
-                                        child: InkWell(
-                                          onTap: () {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (_) => const SignUp(),
+                                              Radius.circular(50),
+                                            ),
+                                          ),
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      const SignUp(),
+                                                ),
+                                              );
+                                            },
+                                            child: const Text(
+                                              "Register Today!",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20,
                                               ),
-                                            );
-                                          },
-                                          child: const Text(
-                                            "Register today!",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20,
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),

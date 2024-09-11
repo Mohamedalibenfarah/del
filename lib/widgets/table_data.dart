@@ -121,7 +121,7 @@ class _TableDataState extends State<TableData> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              const Header(text: ""),
+              const Header(),
               const SizedBox(height: 50),
               Form(
                 key: _formKey,

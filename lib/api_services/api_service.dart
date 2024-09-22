@@ -1,21 +1,21 @@
 import 'dart:convert';
-import 'package:deloitte/models/api_model.dart';
+import 'package:deloitte/models/model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
-  static const String baseUrl = 'http://192.168.111.1:8000';
+  static const String baseUrl = 'http://192.168.100.16:8000';
 
-  Future<List<ApiModel>> getApi() async {
-    List<ApiModel> personList = [];
+  Future<List<Model>> getApi() async {
+    List<Model> personList = [];
     var path = Uri.parse('$baseUrl/api');
     var response = await http.get(path);
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
       for (Map<String, dynamic> item in data) {
-        personList.add(ApiModel.fromJson(item));
+        personList.add(Model.fromJson(item));
       }
     }
 

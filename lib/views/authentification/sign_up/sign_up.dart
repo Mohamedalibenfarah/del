@@ -1,5 +1,5 @@
-import 'package:deloitte/api_service.dart';
-import 'package:deloitte/widgets/authentification/sign_in/sign_in.dart';
+import 'package:deloitte/api_services/api_service.dart';
+import 'package:deloitte/views/authentification/sign_in/sign_in.dart';
 import 'package:deloitte/widgets/button.dart';
 import 'package:deloitte/widgets/header.dart';
 import 'package:deloitte/widgets/no_account.dart';
@@ -126,7 +126,7 @@ class _SignUpState extends State<SignUp> {
                       Expanded(
                         flex: 3,
                         child: Image.asset(
-                          "assets/login.png",
+                          "assets/images/login.png",
                         ),
                       ),
                       Expanded(

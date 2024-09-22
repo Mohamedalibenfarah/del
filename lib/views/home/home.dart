@@ -1,8 +1,9 @@
-import 'package:deloitte/widgets/authentification/sign_in/sign_in.dart';
-import 'package:deloitte/widgets/authentification/sign_up/sign_up.dart';
-import 'package:deloitte/widgets/dashboards/dash.dart';
-import 'package:deloitte/widgets/files/file_pg.dart';
-import 'package:deloitte/widgets/table_data.dart';
+import 'package:deloitte/views/authentification/sign_in/sign_in.dart';
+import 'package:deloitte/views/authentification/sign_up/sign_up.dart';
+import 'package:deloitte/views/consulting_data/mission_verification.dart';
+import 'package:deloitte/views/dashboards/dash.dart';
+import 'package:deloitte/views/files/file_pg.dart';
+import 'package:deloitte/views/consulting_data/table_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -61,7 +62,7 @@ class _HomeState extends State<Home> {
                               children: [
                                 Expanded(
                                   child: Image.asset(
-                                    'assets/DELBlack.jpg',
+                                    'assets/images/DELBlack.jpg',
                                     width: 300,
                                     height: 120,
                                   ),
@@ -86,19 +87,6 @@ class _HomeState extends State<Home> {
                                             },
                                             child: const Text(
                                               "Home",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: InkWell(
-                                            onTap: () {},
-                                            child: const Text(
-                                              "About Us",
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold,
@@ -198,7 +186,7 @@ class _HomeState extends State<Home> {
                                               );
                                             },
                                             child: const Text(
-                                              "Register Today!",
+                                              "Resgister now!",
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.bold,
@@ -288,7 +276,7 @@ class _HomeState extends State<Home> {
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.asset(
-                                    "assets/upload.png",
+                                    "assets/images/upload.png",
                                     color: Colors.white,
                                     height: 40,
                                     width: 40,
@@ -467,23 +455,68 @@ class _HomeState extends State<Home> {
                           ),
                           Column(
                             children: [
-                              Container(
-                                width: 150,
-                                height: 150,
-                                decoration: const BoxDecoration(
-                                  color: Colors.green,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: SvgPicture.asset(
-                                  "assets/icons/contact.svg",
-                                  color: Colors.white,
-                                  height: 40,
-                                  width: 40,
+                              InkWell(
+                                onTap: () async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  bool isUserLoggedIn =
+                                      prefs.getBool('isLoggedIn') ?? false;
+
+                                  if (isUserLoggedIn) {
+                                    // ignore: use_build_context_synchronously
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const MissionVerification(),
+                                      ),
+                                    );
+                                  } else {
+                                    // ignore: use_build_context_synchronously
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text('Not Logged In'),
+                                          content: const Text(
+                                            'You need to be logged in to access this feature.',
+                                          ),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text(
+                                                'OK',
+                                                style: TextStyle(
+                                                  color: Colors.green,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }
+                                },
+                                child: Container(
+                                  width: 150,
+                                  height: 150,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.green,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset(
+                                    "assets/images/verification.png",
+                                    color: Colors.white,
+                                    height: 30,
+                                    width: 30,
+                                  ),
                                 ),
                               ),
                               const SizedBox(height: 30),
                               const Text(
-                                "Contact Us",
+                                "Verification",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),

@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:deloitte/widgets/home.dart';
+import 'package:deloitte/views/home/home.dart';
 import 'package:flutter/material.dart';
 
 class Welcome extends StatefulWidget {
@@ -37,7 +37,7 @@ class _WelcomeState extends State<Welcome> {
         backgroundColor: Colors.black,
         body: Center(
           child: Image.asset(
-            'assets/DELBlack.jpg',
+            'assets/images/DELBlack.jpg',
             width: 300,
             height: 120,
           ),

@@ -37,14 +37,17 @@ flutter:
   assets:
     - assets/
     - assets/icons/
-    - assets/DELBlack.jpg
-    - assets/DELWhite.jpg
-    - assets/deloitte.jpg
-    - assets/upload.png
-    - assets/upload_f.jpg
-    - assets/uplooo.png
-    - assets/login.png
-    - assets/del.png
+    - assets/images/
+    - assets/images/DELBlack.jpg
+    - assets/images/DELWhite.jpg
+    - assets/images/deloitte.jpg
+    - assets/images/upload.png
+    - assets/images/upload_f.jpg
+    - assets/images/uplooo.png
+    - assets/images/login.png
+    - assets/images/del.png
+    - assets/images/R.png
+    - assets/images/verification.png
     - assets/icons/view.svg
     - assets/icons/home.svg
     - assets/icons/statistics.svg

@@ -1,5 +1,5 @@
-class ApiModel {
-  ApiModel({
+class Model {
+  Model({
     required this.regNo,
     required this.email,
     required this.name,
@@ -12,7 +12,7 @@ class ApiModel {
   String mobile;
   String password;
 
-  factory ApiModel.fromJson(Map<String, dynamic> json) => ApiModel(
+  factory Model.fromJson(Map<String, dynamic> json) => Model(
         regNo: json["regNo"],
         email: json["email"],
         name: json["name"],

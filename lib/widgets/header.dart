@@ -1,4 +1,4 @@
-import 'package:deloitte/widgets/home.dart';
+import 'package:deloitte/views/home/home.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
@@ -15,7 +15,7 @@ class Header extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Image.asset(
-                'assets/del.png',
+                'assets/images/del.png',
                 width: 300,
                 height: 120,
               ),
